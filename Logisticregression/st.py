@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import altair as alt
+import time
 
 st.set_page_config(page_title="Streamlit function demo",
                    page_icon="😎"
@@ -53,9 +54,92 @@ st.header("4.charts")
 st.line_chart(df)
 st.bar_chart(df)
 st.area_chart(df)
-chart=alt.chart(df.reset_index()).mark_line().encode(x="index",y="a")
+chart = alt.Chart(df.reset_index()).mark_line().encode(x="index", y="a")
+
+#chart=alt.chart(df.reset_index()).mark_line().encode(x="index",y="a")
 st.altair_chart(chart,use_container_width=True)
 fig , ax =plt.subplots()
 ax.plot(df.index,df.a)
 st.pyplot(fig)
 st.divider()
+
+#widgets
+st.header("5.widgets")
+with st.form("Input form: "):
+    name=st.text_input("Enter your name:",type="password")
+    age=st.number_input("Enter your age:")
+    mood=st.radio("Select your mood",("happy","sad","neutral"))
+    languages = st.multiselect("Select your language:", ["hindi", "english", "spanish", "french"])
+
+    #languages=st.multiselect("select your language:","hindi","english","spanish","french")
+    submit=st.form_submit_button("submit")
+    if submit:
+        st.success(f"Name:{name},Age:{age},Mood:{mood},Language:{languages}")
+
+col1,col2,col3=st.columns([4,1,1])   #width to be managed
+with col1:
+    st.text_input("Enter your name:",type="password")
+    st.number_input("Enter your age:")
+
+
+with col2:
+    st.radio("Select your mood",("happy","sad","neutral"))
+    st.multiselect("Select your language:", ["hindi", "english", "spanish", "french"])
+
+
+with col3:
+    st.title("output")    
+# submit=st.form_submit_button("submit")
+# if submit:
+#         st.success(f"Name:{name},Age:{age},Mood:{mood},Language:{languages}")    
+
+
+col1,col2=st.columns(2)
+with col1:
+     number=st.slider("select a number",0,100)        
+with col2:
+     colour=st.color_picker("select the colour")
+
+st.text_area("Enter your message")
+st.date_input("Select a date")
+st.time_input("select the time")
+st.file_uploader("upload a file")     
+st.divider()
+
+
+st.header("6.media")
+st.image("https://th.bing.com/th/id/OIP.nyLAzWYdvc-wb9ntq1cU7QHaHa?r=0&w=1080&h=1080&rs=1&pid=ImgDetMain",caption="Random image")
+
+
+#slidebar and sidebar
+st.sidebar.header("sidebar header")
+st.sidebar.write("this is a sidebar text")
+st.sidebar.button("click me")
+option=st.sidebar.selectbox("select an option",("option 1","option 2","option 3"))
+
+
+##
+#tab1,tab2,tab3=st.tabs(["tab 1","tab 2","tab 3"])
+with st.container():
+    st.write("This is a container")
+
+with st.expander("See explanation"):
+    st.write("This is inside the expander")
+
+
+
+with st.spinner("loading..."):
+    time.sleep(10)
+st.toast("toast message ",icon="👍")
+
+st.page_link("https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode",label="streamlit website",icon="👍")
+
+    
+
+
+#file handeling
+#generator and decortor
+#multithreading and multiprocessing
+#method overloading and overriding
+#debug and unit testing
+
