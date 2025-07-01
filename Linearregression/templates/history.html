@@ -1,38 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bike Prediction History</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    form {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #1c5980;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #2980b9;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    @media (max-width: 768px) {
+      table, tr, td, th {
+        font-size: 14px;
+      }
+
+      input[type="text"] {
+        width: 80%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h2>Search History</h2>
-    <form method="POST">
-        <input type="text" name="brand_name_filter" placeholder="Enter brand name to filter">
-        <input type="submit" value="Search">
-    </form>
+  <h2>📜 Bike Prediction History</h2>
 
-    <table border="1" cellpadding="6">
-        <tr>
-            <th>ID</th>
-            <th>Brand</th>
-            <th>Owner</th>
-            <th>Kms Driven</th>
-            <th>Age</th>
-            <th>Power</th>
-            <th>Predicted Price</th>
-        </tr>
-        {% for row in historical_data %}
-        <tr>
-            <td>{{ row['id'] }}</td>
-            <td>{{ row['brand_name'] }}</td>
-            <td>{{ row['owner'] }}</td>
-            <td>{{ row['kms_driven'] }}</td>
-            <td>{{ row['age'] }}</td>
-            <td>{{ row['power'] }}</td>
-            <td>{{ row['predicted_price'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+  <form method="POST">
+    <input type="text" name="brand_name_filter" placeholder="Enter brand name to filter">
+    <input type="submit" value="Search">
+  </form>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Brand</th>
+      <th>Owner</th>
+      <th>Kms Driven</th>
+      <th>Age</th>
+      <th>Power</th>
+      <th>Predicted Price (₹)</th>
+    </tr>
+    {% for row in historical_data %}
+    <tr>
+      <td>{{ row['id'] }}</td>
+      <td>{{ row['brand_name'] }}</td>
+      <td>{{ row['owner'] }}</td>
+      <td>{{ row['kms_driven'] }}</td>
+      <td>{{ row['age'] }}</td>
+      <td>{{ row['power'] }}</td>
+      <td>{{ row['predicted_price'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 </body>
 </html>
