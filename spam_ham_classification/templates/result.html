@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Prediction Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .result-box {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        .result-box h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .ham {
+            color: #00e676;
+        }
+        .spam {
+            color: #ffeb3b;
+        }
+        .back-btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ffffff;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        {% if prediction == "0" %}
+            <h1 class="ham">✅ Your mail is: Ham</h1>
+        {% else %}
+            <h1 class="spam">🚫 Your mail is: Spam</h1>
+        {% endif %}
+        <a href="{{ url_for('home') }}" class="back-btn">🔙 Go Back</a>
+    </div>
+</body>
+</html>

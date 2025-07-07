@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Identifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>🚫 Spam Identifier</h1>
+        <p>Paste your email or message below to detect if it’s spam or not.</p>
+        <form action="{{ url_for('predict') }}" method="post" id="spam-form">
+            <textarea id="email-content" name="msg" rows="10" cols="50" placeholder="Type or paste your message here..."></textarea>
+            <button type="submit">🔍 Check for Spam</button>
+        </form>
+        <div id="result">
+            {% if prediction %}
+                <p class="prediction">🧠 Prediction: <strong>{{ prediction }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
